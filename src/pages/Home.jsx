@@ -115,6 +115,8 @@ const Home = () => {
         }else{
             console.log("perro")
         }
+        let validate=classStructure.test(classe)
+        notification(classe,validate)
     }
     const validateGeneralFunction=(e)=>{
         e.preventDefault()
@@ -125,6 +127,8 @@ const Home = () => {
         }else{
             console.log("perro")
         }
+        let validate=generalFunctionStructure.test(generalFunction)
+        notification(generalFunction,validate)
     }
     const validateMainFunction=(e)=>{
         e.preventDefault()
@@ -136,6 +140,8 @@ const Home = () => {
         }else{
             console.log("perro")
         }
+        let validate=mainFunctionStructure.test(mainFunction)
+        notification(mainFunction,validate)
     }
     const validateCondition=(e)=>{
         e.preventDefault()
@@ -147,18 +153,22 @@ const Home = () => {
         }else {
             console.log("ta madre")
         }
+        let validate=conditionStructure.test(condition)
+        notification(condition,validate)
     }
     //revisar
     const validateForeLoop=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", foreLoop)
-        const foreLoopStructure = /^fore\(((int|bool|string|float)*\s*(\w+)*\s*(>|>=|<|<=|!=|==)*\s*(\w+))\)\{\s*\}$/
+        const foreLoopStructure = /^fore\((\s*(\w+)\s*(>|>=|<|<=|!=|==)*\s*(\w+)*)\)\{\s*\}$/
 
         if (foreLoopStructure.test(foreLoop)){
             console.log("exito")
         }else{
             console.log("inga tu roña")
         }
+        let validate=foreLoopStructure.test(foreLoop)
+        notification(foreLoop,validate)
     }
     //revisar
     const validateWhileLoop=(e)=>{
@@ -170,6 +180,8 @@ const Home = () => {
         }else {
             console.log("mames")
         }
+        let validate=whileLoopStructure.test(whileLoop)
+        notification(whileLoop,validate)
     }
     const validateIfCondition=(e)=>{
         e.preventDefault()
@@ -180,6 +192,8 @@ const Home = () => {
         }else{
             console.log("mames")
         }
+        let validate=ifConditionStructure.test(ifCondition)
+        notification(ifCondition,validate)
 
     }
     const validateElifCondition=(e)=>{
@@ -191,16 +205,58 @@ const Home = () => {
         }else{
             console.log("mames")
         }
+        let validate=elifConditionStructure.test(elifCondition)
+        notification(elifCondition,validate)
     }
     const validateVariableDeclaration=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", variableDeclaration)
-        const variableDeclarationStructure = /^((int|float)\s(\w+)(:)*\s*(\d)*(.)*(\d)*;)|((string)\s(\w+)(:*)("*)((\w+)(\s*))*("*)(;))|(bool\s(\w+)(:*)(false|true)*;)$/
-        if(variableDeclarationStructure.test(variableDeclaration)){
+        const variableDeclarationStructureCheck = /^(int|float|string|bool)\s(\w+)\s*(:*\s*(\d+(\.\d+)?|(true|false)|("*([^"]*)")))?;$/
+        const matches = variableDeclaration.match(variableDeclarationStructureCheck)
+        let isValid = false;
+        if(matches){
+            const valueType = matches[1];
+            console.log("vt: ", valueType)
+
+            switch (valueType) {
+                case "int":
+                    // eslint-disable-next-line no-case-declarations
+                    const variableIntDeclarationStructure=/^int\s(\w+)\s*:\s*(\d*);*$/
+                    isValid = variableIntDeclarationStructure.test(variableDeclaration)
+                    console.log("iv: ", isValid)
+                    break;
+                case "float":
+                    // eslint-disable-next-line no-case-declarations
+                    const variableFloatDeclarationStructure=/^float\s(\w+)\s*:*\s*(\d*)\.(\d*);$/
+                        isValid = variableFloatDeclarationStructure.test(variableDeclaration)
+                        console.log("iv: ", isValid)
+                    break;
+                case "string":
+                    // eslint-disable-next-line no-case-declarations
+                    const variableStrDeclarationStructure=/^string\s(\w+)\s*:*\s*("(\w*\s*)*";)$/
+                        isValid =variableStrDeclarationStructure.test(variableDeclaration)
+                        console.log("iv: ", isValid)
+                    break;
+                case "bool":
+                    // eslint-disable-next-line no-case-declarations
+                    const variableBoolDeclarationStructure=/^bool\s(\w*)\s*:*\s*(true|false)*;$/
+                        isValid = variableBoolDeclarationStructure.test(variableDeclaration)
+                        console.log("iv: ", isValid)
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+        if(isValid){
             console.log("exito")
         }else{
             console.log("err")
         }
+
+        notification(variableDeclaration,isValid)
+
     }
     const validateVariableAssignation=(e)=>{
         e.preventDefault()
@@ -211,6 +267,8 @@ const Home = () => {
         }else {
             console.log("err")
         }
+        let validate=variableAssignationStructure.test(variableAssignation)
+        notification(variableAssignation,validate)
 
     }
     const validateFunctionCalling=(e)=>{
@@ -222,6 +280,8 @@ const Home = () => {
         }else{
             console.log("err")
         }
+        let validate=functionCallingStructure.test(functionCalling)
+        notification(functionCalling,validate)
     }
     const validateWrittingFunction=(e)=>{
         e.preventDefault()
@@ -232,6 +292,8 @@ const Home = () => {
         }else{
             console.log("err")
         }
+        let validate=writtingFunctionStructure.test(writtingFunction)
+        notification(writtingFunction,validate)
     }
     const validateReadingFunction=(e)=>{
         e.preventDefault()
@@ -242,6 +304,8 @@ const Home = () => {
         }else{
             console.log("err")
         }
+        let validate=readingFunctionStructure.test(readingFunction)
+        notification(readingFunction,validate)
     }
 
     return (
@@ -304,6 +368,14 @@ const Home = () => {
                                         onClick={validateWhileLoop}>Revisar</Button>
                             </form>
                             <form action="">
+                                <Input fullWidth placeholder="Fore Loop"
+                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       onChange={handlerForeLoopChange}
+                                />
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateForeLoop}>Revisar</Button>
+                            </form>
+                            <form action="">
                                 <Input fullWidth placeholder="If condition"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
                                        onChange={handlerIfConditionChange}
@@ -318,14 +390,6 @@ const Home = () => {
                                 />
                                 <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
                                         onClick={validateElifCondition}>Revisar</Button>
-                            </form>
-                            <form action="">
-                                <Input fullWidth placeholder="Fore Loop"
-                                    style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
-                                       onChange={handlerForeLoopChange}
-                                />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
-                                    onClick={validateForeLoop}>Revisar</Button>
                             </form>
                             <form action="">
                                 <Input fullWidth placeholder="Variable Declaration"
