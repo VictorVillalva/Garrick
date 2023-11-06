@@ -26,6 +26,8 @@ const Home = () => {
     const [functionCalling, setFunctionCalling]=useState("")
     const [writtingFunction, setWrittingFunction]=useState("")
     const [readingFunction, setReadingFunction]=useState("")
+    const [code,setCode]=useState("")
+
 
 
 
@@ -38,8 +40,8 @@ const Home = () => {
                 text: `Cadena "${string}" Valida`,
                 background: "#2c2c2c",
                 color: "#fff",
-                confirmButtonColor: "#850287",
-                iconColor: "#850287"
+                confirmButtonColor: "#962222",
+                iconColor: "#962222"
             })
         }else{
             Swal.fire({
@@ -49,8 +51,8 @@ const Home = () => {
                 text: `Cadena "${string}" Invalida`,
                 background: "#2c2c2c",
                 color: "#fff",
-                confirmButtonColor: "#850287",
-                iconColor: "#850287"
+                confirmButtonColor: "#962222",
+                iconColor: "#962222"
 
             })
         }
@@ -96,6 +98,9 @@ const Home = () => {
     }
     const handlerReadingFunctionChange=(e)=>{
         setReadingFunction(e.target.value)
+    }
+    const handlerCodeChange=(e)=>{
+        setCode(e.target.value)
     }
 
 
@@ -158,7 +163,7 @@ const Home = () => {
         let validate=conditionStructure.test(condition)
         notification(condition,validate)
     }
-    //revisar
+
     const validateForeLoop=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", foreLoop)
@@ -172,7 +177,7 @@ const Home = () => {
         let validate=foreLoopStructure.test(foreLoop)
         notification(foreLoop,validate)
     }
-    //revisar
+
     const validateWhileLoop=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", whileLoop)
@@ -310,11 +315,23 @@ const Home = () => {
         notification(readingFunction,validate)
     }
 
+    const validateCode=(e)=>{
+        e.preventDefault()
+        const codeMCFWFMIFStruct = /^modelo\s(\w+\.*\w+)*\s*Class\s(\w+)\s*\(\s*\)\{\s*func\s(\w+)*\(((int|float|string|bool)\s(\w+)*)*\)\{\s*if\((\w+)\s*(>|>=|<|<=|!=|==)\s*(\w+)\)\{\s*ESCRIBEALGO\s*\}(elif\(((\w+)\s*(>|>=|<|<=|!=|==)\s*(\w+))*\)\{\s*LEEALGO\s*\})*\}\s*func\sMain\(\)\{\s*(\w+)\(("*\w+\s*"*)*\);\s*\}\}$/
+        let isValid =codeMCFWFMIFStruct.test(code)
+        if(isValid){
+            console.log("ex")
+        }else{
+            console.log("fail")
+        }
+        notification("",codeMCFWFMIFStruct.test(code))
+    }
+
     return (
         <>
             <section className='sec-1'>
                 <header className='header-home'>
-                    <h1>Lenguaje de programacion <label className='language-name'>Garrick</label> <img src={G} alt="G" id='G' /></h1>
+                    <h1>Lenguaje de programación <label className='language-name'>Garrick</label> <img src={G} alt="G" id='G' /></h1>
                 </header>
                 <article className='article-home'>
                     <div className="forms">
@@ -452,9 +469,11 @@ const Home = () => {
                             defaultValue="Ingresa"
                             style={{backgroundColor: 'white', border:'#FFFFFF 1px solid', fontFamily: 'Raleway',}}
                             color='secondary'
+                            onChange={handlerCodeChange}
                         />
                     </div>
-                    <Button variant="contained" style={{ backgroundColor: 'white', color: '#131313', marginTop: '1rem' }}>Revisar</Button>
+                    <Button variant="contained" style={{ backgroundColor: 'white', color: '#131313', marginTop: '1rem' }}
+                        onClick={validateCode}>Revisar</Button>
                 </div>
                 <footer>
                     <div className="logo-garrick">
