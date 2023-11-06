@@ -195,22 +195,53 @@ const Home = () => {
     const validateVariableDeclaration=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", variableDeclaration)
+        const variableDeclarationStructure = /^((int|float)\s(\w+)(:)*\s*(\d)*(.)*(\d)*;)|((string)\s(\w+)(:*)("*)((\w+)(\s*))*("*)(;))|(bool\s(\w+)(:*)(false|true)*;)$/
+        if(variableDeclarationStructure.test(variableDeclaration)){
+            console.log("exito")
+        }else{
+            console.log("err")
+        }
     }
     const validateVariableAssignation=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", variableAssignation)
+        const variableAssignationStructure = /^(\w+)\s*:(("(\w+\s*)*")|(\d+)|(true|false)|(\d+.\d+));$/
+        if (variableAssignationStructure.test(variableAssignation)){
+            console.log("exito")
+        }else {
+            console.log("err")
+        }
+
     }
     const validateFunctionCalling=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", functionCalling)
+        const functionCallingStructure = /^(\w+)\((\w+)*\);$/
+        if (functionCallingStructure.test(functionCalling)){
+            console.log("exito")
+        }else{
+            console.log("err")
+        }
     }
     const validateWrittingFunction=(e)=>{
         e.preventDefault()
         console.log("la cadena es:", writtingFunction)
+        const writtingFunctionStructure = /^writeln\(("(\w+\s*)*")\);$/
+        if(writtingFunctionStructure.test(writtingFunction)){
+            console.log("exito")
+        }else{
+            console.log("err")
+        }
     }
     const validateReadingFunction=(e)=>{
         e.preventDefault()
         console.log("la cadena es: ", readingFunction)
+        const readingFunctionStructure= /^readln\(("(\w+\s*)*")*\);$/
+        if(readingFunctionStructure.test(readingFunction)){
+            console.log("exito")
+        }else{
+            console.log("err")
+        }
     }
 
     return (
@@ -256,12 +287,14 @@ const Home = () => {
                             </form>
                             <form action="">
                                 <Input fullWidth placeholder="Conditions"
-                                    style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
                                        onChange={handlerConditionChange}
                                 />
                                 <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
-                                    onClick={validateCondition}>Revisar</Button>
+                                        onClick={validateCondition}>Revisar</Button>
                             </form>
+                        </div>
+                        <div className="col-2">
                             <form action="">
                                 <Input fullWidth placeholder="While Loop"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
@@ -286,9 +319,7 @@ const Home = () => {
                                 <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
                                         onClick={validateElifCondition}>Revisar</Button>
                             </form>
-                        </div>
-                        <div className="col-2">
-                        <form action="">
+                            <form action="">
                                 <Input fullWidth placeholder="Fore Loop"
                                     style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
                                        onChange={handlerForeLoopChange}
@@ -297,40 +328,47 @@ const Home = () => {
                                     onClick={validateForeLoop}>Revisar</Button>
                             </form>
                             <form action="">
-                                <Input fullWidth placeholder="Placeholder"
-                                    style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                <Input fullWidth placeholder="Variable Declaration"
+                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       onChange={handlerVariableDeclarationChange}
                                 />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateVariableDeclaration}>Revisar</Button>
+                            </form>
+
+                        </div>
+                        <div className={"col-3"}>
+                            <form action="">
+                                <Input fullWidth placeholder="Variable Assignation"
+                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem',}}
+                                       onChange={handlerVariableAssignationChange}
+                                />
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateVariableAssignation}>Revisar</Button>
                             </form>
                             <form action="">
-                                <Input fullWidth placeholder="Placeholder"
+                                <Input fullWidth placeholder="Function Calling"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       onChange={handlerFunctionCallingChange}
                                 />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateFunctionCalling}>Revisar</Button>
                             </form>
                             <form action="">
-                                <Input fullWidth placeholder="Placeholder"
+                                <Input fullWidth placeholder="Writting Function"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       onChange={handlerWrittingFunctionChange}
                                 />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateWrittingFunction}>Revisar</Button>
                             </form>
                             <form action="">
-                                <Input fullWidth placeholder="Placeholder"
+                                <Input fullWidth placeholder="Reading Function"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
+                                       onChange={handlerReadingFunctionChange}
                                 />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
-                            </form>
-                            <form action="">
-                                <Input fullWidth placeholder="Placeholder"
-                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
-                                />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
-                            </form>
-                            <form action="">
-                                <Input fullWidth placeholder="Placeholder"
-                                       style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
-                                />
-                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}>Revisar</Button>
+                                <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
+                                        onClick={validateReadingFunction}>Revisar</Button>
                             </form>
                         </div>
                     </div>
