@@ -16,11 +16,9 @@ const Home = () => {
     const [classe, setClasse]= useState("")
     const [generalFunction, setGeneralFunction] = useState("")
     const [condition,setCondition]=useState("")
-    const [foreLoop, setForeLoop]=useState("")
-    const [whileLoop, setWhileLoop]=useState("")
+    const [loop, setLoop]=useState("")
     const [ifCondition, setIfCondition]=useState("")
     const [variableDeclaration, setVariableDeclaration]=useState("")
-    const [variableAssignation, setVariableAssignation]=useState("")
     const [functionCalling, setFunctionCalling]=useState("")
     const [code,setCode]=useState("")
 
@@ -65,11 +63,9 @@ const Home = () => {
     const handlerConditionChange=(e)=>{
         setCondition(e.target.value)
     }
-    const handlerForeLoopChange=(e)=>{
-        setForeLoop(e.target.value)
-    }
-    const handlerWhileLoopChange=(e)=>{
-        setWhileLoop(e.target.value)
+
+    const handlerLoopChange=(e)=>{
+        setLoop(e.target.value)
     }
     const handlerIfConditionChange=(e)=>{
         setIfCondition(e.target.value)
@@ -77,6 +73,9 @@ const Home = () => {
     const handlerFunctionCallingChange=(e)=>{
         setFunctionCalling(e.target.value)
     }
+    const handlerVariableDeclarationChange = (e) => {
+        setVariableDeclaration(e.target.value)
+    };
 
     const handlerCodeChange=(e)=>{
         setCode(e.target.value)
@@ -106,14 +105,14 @@ const Home = () => {
         const stack = condition.split(" ")
         console.log(stack)
     }
-    const validateForeLoop=(e)=>{
-    setForeLoop(e.target.value)
-        const stack = foreLoop.split(" ")
+    const validateVariableDeclaration=(e)=>{
+    setVariableDeclaration(e.target.value)
+        const stack = variableDeclaration.split(" ")
         console.log(stack)
     }
-    const validateWhileLoop=(e)=>{
+    const validateLoop=(e)=>{
         e.preventDefault()
-        const stack = whileLoop.split(" ")
+        const stack = loop.split(" ")
         console.log(stack)
 
     }
@@ -190,18 +189,18 @@ const Home = () => {
 
                                 <Input fullWidth placeholder="While Loop"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
-                                       onChange={handlerWhileLoopChange}
+                                       onChange={handlerLoopChange}
                                 />
                                 <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
-                                        onClick={validateWhileLoop}>Revisar</Button>
+                                        onClick={validateLoop}>Revisar</Button>
                             </form>
                             <form action="">
-                                <Input fullWidth placeholder="Fore Loop"
+                                <Input fullWidth placeholder="Variable declaration"
                                        style={{ color: 'white', fontFamily: 'Raleway', borderBottom: '#FFFFFF 1px solid', marginTop: '2rem', }}
-                                       onChange={handlerForeLoopChange}
+                                       onChange={handlerVariableDeclarationChange}
                                 />
                                 <Button variant="contained" style={{backgroundColor:'white', color:'#131313', marginTop:'1rem'}}
-                                        onClick={validateForeLoop}>Revisar</Button>
+                                        onClick={validateVariableDeclaration}>Revisar</Button>
                             </form>
                             <form action="">
                                 <Input fullWidth placeholder="If condition"
