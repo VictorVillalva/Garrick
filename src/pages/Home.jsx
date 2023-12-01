@@ -74,9 +74,6 @@ const Home = () => {
     const handlerIfConditionChange=(e)=>{
         setIfCondition(e.target.value)
     }
-    const handlerVariableDeclarationChange=(e)=>{
-        setVariableDeclaration(e.target.value)
-    }
     const handlerFunctionCallingChange=(e)=>{
         setFunctionCalling(e.target.value)
     }
@@ -89,36 +86,46 @@ const Home = () => {
 
     const  validateModule=(e)=>{
         e.preventDefault()
+        const stack = module.split(" ")
+        console.log(stack)
 
     }
     const validateClasse=(e)=>{
         e.preventDefault()
-
+        const stack = classe.split(" ")
+        console.log(stack)
     }
     const validateFunction=(e)=>{
         e.preventDefault()
+        const stack = generalFunction.split(" ")
+        console.log(stack)
 
     }
     const validateCondition=(e)=>{
         e.preventDefault()
-
+        const stack = condition.split(" ")
+        console.log(stack)
     }
     const validateForeLoop=(e)=>{
     setForeLoop(e.target.value)
+        const stack = foreLoop.split(" ")
+        console.log(stack)
     }
     const validateWhileLoop=(e)=>{
         e.preventDefault()
+        const stack = whileLoop.split(" ")
+        console.log(stack)
 
     }
     const validateIfCondition=(e)=>{
         e.preventDefault()
-    }
-    const validateVariableDeclaration=(e)=>{
-        e.preventDefault()
-
+        const stack = ifCondition.split(" ")
+        console.log(stack)
     }
     const validateFunctionCalling=(e)=>{
         e.preventDefault()
+        const stack = functionCalling.split(" ")
+        console.log(stack)
 
     }
 
