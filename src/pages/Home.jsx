@@ -23,6 +23,16 @@ const Home = () => {
     const [code,setCode]=useState("")
 
 
+    const StackDictionary ={
+        module:["a","b"],
+        classe:[],
+        funcion:[],
+        condition:[],
+        loop:[],
+        if:[],
+        variable:[],
+    }
+
 
 
     const notification =(string, validate)=>{
@@ -87,6 +97,7 @@ const Home = () => {
         e.preventDefault()
         const stack = module.split(" ")
         console.log(stack)
+        console.log("hcrhrc")
 
     }
     const validateClasse=(e)=>{
